@@ -62,7 +62,12 @@ const check_currency = (asset) => {
 
 const recursive_currency = (i=0) => {
 	if(!currencies[i]) {
-		return;
+		return DB.disconnect().then(() => {
+			console.log('DB disconnected');
+			process.exit(0);
+		}).catch(e => {
+			process.exit(1);
+		});
 	}
 
 	return check_currency(currencies[i]).finally(() => {
