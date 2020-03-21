@@ -10,14 +10,17 @@ router.post('/message', (req, res, next) => {
 	let { message } = req.body;
 
 	let channel = message.chat;
-	let commands = message.entities.map(({ type, offset, length }) => {
-		if(type !== 'bot_command') {
-			return null;
-		}
+	let commands = [];
+	if(message.entities) {
+		commands = message.entities.map(({ type, offset, length }) => {
+			if(type !== 'bot_command') {
+				return null;
+			}
 
-		let command = message.text.slice(offset, offset + length);
-		return command;
-	}).filter(e => e);
+			let command = message.text.slice(offset, offset + length);
+			return command;
+		}).filter(e => e);
+	}
 
 	const user = User.get({
 		telegram_id: message.from.id
