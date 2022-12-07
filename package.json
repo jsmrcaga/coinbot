@@ -15,8 +15,8 @@
   "dependencies": {
     "@jsmrcaga/mongo": "^0.3.0",
     "argumentate": "^2.0.0",
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
     "fishingrod": "^4.1.0"
   }
 }
